@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 配置文件 -->
+
+<hibernate-mapping package="hsx.com.model">
+
+	<class name="Class" table="t_class"> <!-- table="t_class"数据表 -->
+		<id name="id" column="classId">  <!-- column="stuId"表示id映射到数据表的字段名 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" column="className"></property>
+				
+		<set name="students" cascade="delete" inverse="true">
+			<key column="classId"></key>
+			<one-to-many class="hsx.com.model.Student"/>
+		</set>
+	</class>
+
+</hibernate-mapping>

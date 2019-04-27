@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 配置文件 -->
+
+<hibernate-mapping package="hsx.com.model">
+
+	<class name="Student" table="t_student"> <!-- table="t_student"数据表 -->
+		<id name="id" column="stuId">  <!-- column="stuId"表示id映射到数据表的字段名 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" column="stuName"></property>
+		
+		<many-to-one name="c" column="classId" class="hsx.com.model.Class" cascade="save-update"></many-to-one>
+<!-- 在<many-to-one>这端，cascade默认是"none"，假如我们希望在持久化多的一端的时候，自动级联保存和更新一的一端，可把cascade设置成"save-update" -->
+	</class>
+
+</hibernate-mapping>
